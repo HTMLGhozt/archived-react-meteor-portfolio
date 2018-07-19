@@ -1,0 +1,13 @@
+{
+  "extends": [ "@meteorjs/eslint-config-meteor", "airbnb" ],
+  "env": {
+    "meteor": true
+  },
+  "rules": {
+    "no-console": ["error", { "allow": ["warn", "error", "info"] }],
+    "react/jsx-one-expression-per-line": 0,
+    "linebreak-style": 0,
+    "import/no-unresolved": 0,
+    "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }]
+  }
+}
