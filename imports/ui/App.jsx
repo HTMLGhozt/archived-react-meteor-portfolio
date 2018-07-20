@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
+import styles from './app.css';
 import NavBar from './navigation/NavBar';
 
 const Home = () => <div>Home</div>;
@@ -25,7 +26,7 @@ class App extends React.Component {
     const { pages } = this.state;
     return (
       <div>
-        <header>
+        <header className={styles.site}>
           <h1>
             Thomas Dillard Portfolio
             <span>A living experiment</span>
@@ -33,7 +34,12 @@ class App extends React.Component {
           <NavBar getPages={this.getPages} />
         </header>
         { pages.map(page => (
-          <Route exact key={page.title} path={page.route} component={page.component} />
+          <Route
+            exact
+            key={page.title}
+            path={page.route}
+            component={page.component}
+          />
         )) }
       </div>
     );
