@@ -1,20 +1,17 @@
 import React from 'react';
 import { func } from 'prop-types';
 
+// import { bar } from './styles/navigation.css';
 import NavItem from './NavItem';
 
 export default class NavBar extends React.Component {
   static propTypes = {
-    getPages: func,
-  }
-
-  static defaultProps = {
-    getPages: () => [],
+    getPages: func.isRequired,
   }
 
   state = {
     pages: [],
-  };
+  }
 
   componentDidMount() {
     const { pages } = this.state;
@@ -28,7 +25,7 @@ export default class NavBar extends React.Component {
     const { getPages } = this.props;
 
     this.setState({
-      pages: getPages(),
+      pages: getPages() || [],
     });
   }
 

@@ -1,8 +1,8 @@
 import React from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
-import styles from './app.css';
 import NavBar from './navigation/NavBar';
+import style from './styles/header.css';
 
 const Home = () => <div>Home</div>;
 const About = () => <div>About</div>;
@@ -26,17 +26,18 @@ class App extends React.Component {
     const { pages } = this.state;
     return (
       <div>
-        <header className={styles.site}>
-          <h1>
+        <header className={style.header}>
+          <h1 className={style.title}>
             Thomas Dillard Portfolio
             <span>A living experiment</span>
           </h1>
           <NavBar getPages={this.getPages} />
         </header>
+
         { pages.map(page => (
           <Route
             exact
-            key={page.title}
+            key={page.component.name}
             path={page.route}
             component={page.component}
           />

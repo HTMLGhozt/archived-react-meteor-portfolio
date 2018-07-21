@@ -1,0 +1,9 @@
+.header {
+  width: 100vw;
+  height: 100vh;
+  padding: 20px;
+  box-sizing: border-box;
+}
+.headerTitle {
+  font-size: 50px;
+}
