@@ -29,7 +29,7 @@ class App extends React.Component {
         <header className={style.header}>
           <h1 className={style.title}>
             Thomas Dillard Portfolio
-            <span>A living experiment</span>
+            <span className={style.subtitle}>A living experiment</span>
           </h1>
           <NavBar getPages={this.getPages} />
         </header>

@@ -4,6 +4,11 @@
   padding: 20px;
   box-sizing: border-box;
 }
-.headerTitle {
+.title {
   font-size: 50px;
+}
+.subtitle {
+  font-size: 20px;
+  color: gray;
+  display: block;
 }
