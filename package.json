@@ -1,5 +1,5 @@
 {
-  "name": "ThomasDillard",
+  "name": "portfolio",
   "private": true,
   "scripts": {
     "start": "meteor run",
