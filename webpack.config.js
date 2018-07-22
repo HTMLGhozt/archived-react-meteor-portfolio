@@ -9,9 +9,14 @@ const clientConfig = {
     rules: [
       {
         test: /\.svg$/,
-        include: join(__dirname, 'imports/ui/assets'),
+        include: join(__dirname, 'imports/ui/static'),
         exclude: /node_modules/,
-        use: 'url-loader',
+        use: {
+          loader: 'file-loader',
+          options: {
+            name: '[path][name].[ext]',
+          },
+        },
       },
       {
         test: /\.(js|jsx)$/,

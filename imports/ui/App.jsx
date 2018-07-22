@@ -1,9 +1,9 @@
 import React from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
-import NavBar from './navigation/NavBar';
+import Header from './sections/Header';
+import Footer from './sections/Footer';
 import Home from './pages/Home';
-import styles from './styles/header.css';
 
 const About = () => <div>About</div>;
 const Blog = () => <div>Blog</div>;
@@ -26,22 +26,18 @@ class App extends React.Component {
     const { pages } = this.state;
     return (
       <div>
-        <header className={styles.header}>
-          <h1 className={styles.title}>
-            Thomas Dillard Portfolio
-            <span className={styles.subtitle}>A living experiment</span>
-          </h1>
-          <NavBar getPages={this.getPages} />
-        </header>
+        <Header getPages={this.getPages} />
 
         { pages.map(page => (
           <Route
             exact
-            key={page.component.name}
+            key={page.title}
             path={page.route}
             component={page.component}
           />
         )) }
+
+        <Footer />
       </div>
     );
   }

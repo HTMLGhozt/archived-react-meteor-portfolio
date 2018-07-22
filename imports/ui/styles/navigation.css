@@ -1,0 +1,15 @@
+.navBar {
+  width: 500px;
+  display: flex;
+  justify-content: space-around;
+  margin: 0 auto;
+}
+
+.navItem {
+  padding: 10px 20px;
+  color: gray;
+}
+
+.navItemActive {
+  color: blue;
+}

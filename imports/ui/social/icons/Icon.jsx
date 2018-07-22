@@ -1,11 +1,11 @@
 import React from 'react';
 import { oneOf } from 'prop-types';
 
-import styles from '../../../styles/icons.css';
+import styles from '../../styles/icons.css';
 
-import github from '../../../assets/github.svg';
-import twitter from '../../../assets/twitter.svg';
-import linkedin from '../../../assets/linkedin.svg';
+import github from '../../static/marks/github.svg';
+import twitter from '../../static/marks/twitter.svg';
+import linkedin from '../../static/marks/linkedin.svg';
 
 const iconSetup = {
   GitHub: {
@@ -29,7 +29,7 @@ const iconSetup = {
   LinkedIn: {
     img: {
       src: linkedin,
-      alt: 'linkedin',
+      alt: 'LinkedIn',
     },
     link: {
       href: 'https://www.linkedin.com/in/thomasdillard/',

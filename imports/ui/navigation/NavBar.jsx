@@ -1,12 +1,22 @@
 import React from 'react';
-import { func } from 'prop-types';
+import { arrayOf, shape, string } from 'prop-types';
 
-// import { bar } from './styles/navigation.css';
 import NavItem from './NavItem';
+
+import { navBar } from '../styles/navigation.css';
 
 export default class NavBar extends React.Component {
   static propTypes = {
-    getPages: func.isRequired,
+    pages: arrayOf(
+      shape({
+        route: string.isRequired,
+        title: string.isRequired,
+      }),
+    ),
+  }
+
+  static defaultProps = {
+    pages: [],
   }
 
   state = {
@@ -22,17 +32,16 @@ export default class NavBar extends React.Component {
   }
 
   setPages = () => {
-    const { getPages } = this.props;
+    const { pages } = this.props;
 
-    this.setState({
-      pages: getPages() || [],
-    });
+    this.setState({ pages });
   }
 
   render() {
     const { pages } = this.state;
+
     return (
-      <nav>
+      <nav className={navBar}>
         { pages.map(page => <NavItem key={page.title} {...page} />) }
       </nav>
     );
