@@ -1,34 +1,42 @@
-const webpack = require('webpack');
+const { join } = require('path');
+const { HotModuleReplacementPlugin } = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const meteorExternals = require('webpack-meteor-externals');
-const path = require('path');
 
 const clientConfig = {
   entry: './client/main.js',
   module: {
     rules: [
       {
+        test: /\.svg$/,
+        include: join(__dirname, 'imports/ui/assets'),
+        exclude: /node_modules/,
+        use: 'url-loader',
+      },
+      {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
-        use: ['babel-loader'],
+        use: 'babel-loader',
       },
       {
         test: /\.css$/,
+        include: [join(__dirname, 'client'), join(__dirname, 'imports')],
+        exclude: /node_modules/,
         loader: 'style-loader!css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]',
       },
     ],
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: './client/main.html',
+      template: join(__dirname, 'client/main.html'),
     }),
-    new webpack.HotModuleReplacementPlugin(),
+    new HotModuleReplacementPlugin(),
   ],
   resolve: {
     extensions: ['*', '.js', '.jsx'],
   },
   output: {
-    path: path.join(__dirname, 'dist'),
+    path: join(__dirname, 'dist'),
     publicPath: '/',
     filename: 'bundle.js',
   },
@@ -40,10 +48,9 @@ const clientConfig = {
     meteorExternals(),
   ],
 };
+
 const serverConfig = {
-  entry: [
-    './server/main.js',
-  ],
+  entry: './server/main.js',
   target: 'node',
   externals: [
     meteorExternals(),

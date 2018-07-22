@@ -1,0 +1,7 @@
+  !.meteor/
+  !node_modules/
+  !webpack.config.js
+  !.babelrc
+  !.eslintrc
+  !.gitignore
+  !tests/

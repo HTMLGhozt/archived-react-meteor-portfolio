@@ -2,9 +2,9 @@ import React from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 import NavBar from './navigation/NavBar';
-import style from './styles/header.css';
+import Home from './pages/Home';
+import styles from './styles/header.css';
 
-const Home = () => <div>Home</div>;
 const About = () => <div>About</div>;
 const Blog = () => <div>Blog</div>;
 
@@ -26,10 +26,10 @@ class App extends React.Component {
     const { pages } = this.state;
     return (
       <div>
-        <header className={style.header}>
-          <h1 className={style.title}>
+        <header className={styles.header}>
+          <h1 className={styles.title}>
             Thomas Dillard Portfolio
-            <span className={style.subtitle}>A living experiment</span>
+            <span className={styles.subtitle}>A living experiment</span>
           </h1>
           <NavBar getPages={this.getPages} />
         </header>
