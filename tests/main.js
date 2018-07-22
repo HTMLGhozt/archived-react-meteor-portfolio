@@ -2,10 +2,10 @@
 
 // import assert from 'assert';
 
-// describe('ThomasDillard', function () {
+// describe('portfolio', function () {
 //   it('package.json has correct name', async function () {
 //     const { name } = await import('../package.json');
-//     assert.strictEqual(name, 'ThomasDillard');
+//     assert.strictEqual(name, 'portfolio');
 //   });
 
 //   if (Meteor.isClient) {

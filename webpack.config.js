@@ -42,7 +42,6 @@ const clientConfig = {
   },
   devServer: {
     contentBase: './dist',
-    hot: true,
   },
   externals: [
     meteorExternals(),
