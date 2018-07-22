@@ -8,6 +8,7 @@
     "react/jsx-one-expression-per-line": 0,
     "linebreak-style": 0,
     "import/no-unresolved": 0,
-    "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }]
+    "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }],
+    "react/prefer-stateless-function": [2, { "ignorePureComponents": true }]
   }
 }
