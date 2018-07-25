@@ -1,5 +1,6 @@
 import { Meteor } from 'meteor/meteor';
 import { Mongo } from 'meteor/mongo';
+import { ValidatedMethod } from 'meteor/mdg:validated-method';
 import SimpleSchema from 'simpl-schema';
 
 export const Articles = new Mongo.Collection('articles');
@@ -11,15 +12,13 @@ if (Meteor.isServer) {
   });
 }
 
-export const insert = {
+export const insert = new ValidatedMethod({
   name: 'articles.insert',
 
-  validate(args) {
-    new SimpleSchema({
-      title: { type: String },
-      content: { type: String },
-    }).validate(args);
-  },
+  validate: new SimpleSchema({
+    title: { type: String },
+    content: { type: String },
+  }).validator(),
 
   run({ title, content }) {
     if (!title.length || !content.length) {
@@ -36,37 +35,5 @@ export const insert = {
       owner: this.userId,
       username: Meteor.users.findOne(this.userId).username,
     });
-  },
-  call(args, callback) {
-    const options = {
-      returnStubValue: true,
-      throwStubExceptions: true,
-    };
-
-    Meteor.apply(this.name, [args], options, callback);
-  },
-};
-
-// export const update = {
-//   name: 'articles.update',
-
-//   validate(args) {
-//     new SimpleSchema({
-//       title: {
-//         type: String,
-//         optional: true,
-//       },
-//       content: {
-//         type: String,
-//         optional: true,
-//       }
-//     }).validate(args);
-//   }
-// }
-
-Meteor.methods({
-  [insert.name](args) {
-    insert.validate.call(this, args);
-    insert.run.call(this, args);
   },
 });
