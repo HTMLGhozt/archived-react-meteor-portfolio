@@ -1,10 +1,24 @@
 import React from 'react';
 import { withTracker } from 'meteor/react-meteor-data';
 import isEqual from 'lodash/isEqual';
+import { arrayOf, shape, string } from 'prop-types';
 
 import { Articles } from '../../api/articles';
 
 class Blog extends React.Component {
+  static propTypes = {
+    articles: arrayOf(
+      shape({
+        title: string,
+        content: string,
+      }),
+    ),
+  }
+
+  static defaultProps = {
+    articles: [],
+  }
+
   state = {
     articles: [],
   }
@@ -17,13 +31,8 @@ class Blog extends React.Component {
   }
 
   fetchArticles = () => {
-    let { articles } = this.props;
+    const { articles } = this.props;
     const { articles: stateArticles } = this.state;
-
-    if (!articles.length) {
-      articles = Articles.find().fetch();
-      console.log(articles, this.props);
-    }
 
     if (!isEqual(articles, stateArticles)) {
       this.setState({ articles });
