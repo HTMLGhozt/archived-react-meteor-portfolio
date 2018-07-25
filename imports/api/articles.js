@@ -8,7 +8,7 @@ export const Articles = new Mongo.Collection('articles');
 if (Meteor.isServer) {
   /* eslint-disable-next-line func-names, prefer-arrow-callback */
   Meteor.publish('articles', function () {
-    return Articles.find({});
+    return Articles.find();
   });
 }
 
@@ -29,11 +29,13 @@ export const insert = new ValidatedMethod({
       );
     }
 
+    console.info('running:', title, content);
+
     Articles.insert({
       title,
       content,
-      owner: this.userId,
-      username: Meteor.users.findOne(this.userId).username,
     });
+
+    return 'success';
   },
 });

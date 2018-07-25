@@ -1,6 +1,10 @@
 import React from 'react';
+import { withTracker } from 'meteor/react-meteor-data';
+import isEqual from 'lodash/isEqual';
 
-export default class Blog extends React.Component {
+import { Articles } from '../../api/articles';
+
+class Blog extends React.Component {
   state = {
     articles: [],
   }
@@ -13,12 +17,17 @@ export default class Blog extends React.Component {
   }
 
   fetchArticles = () => {
-    const articles = [{
-      title: 'Example Title',
-      content: 'Example Content',
-    }];
+    let { articles } = this.props;
+    const { articles: stateArticles } = this.state;
 
-    this.setState({ articles });
+    if (!articles.length) {
+      articles = Articles.find().fetch();
+      console.log(articles, this.props);
+    }
+
+    if (!isEqual(articles, stateArticles)) {
+      this.setState({ articles });
+    }
   }
 
   render() {
@@ -30,3 +39,17 @@ export default class Blog extends React.Component {
     );
   }
 }
+
+export default withTracker(() => {
+  const blogHandle = Meteor.subscribe('articles');
+  const loading = !blogHandle.ready();
+  const list = Articles.find();
+  const hasArticles = !loading && !!list;
+
+  return {
+    loading,
+    hasArticles,
+    list,
+    articles: hasArticles ? list.fetch() : [],
+  };
+})(Blog);

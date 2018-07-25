@@ -4,9 +4,10 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Header from './sections/Header';
 import Footer from './sections/Footer';
 import Home from './pages/Home';
+import Blog from './pages/blog';
+import WritePost from './pages/WritePost';
 
 const About = () => <div>About</div>;
-const Blog = () => <div>Blog</div>;
 
 class App extends React.Component {
   state = {
@@ -14,6 +15,7 @@ class App extends React.Component {
       { component: Home, title: 'Home', route: '/' },
       { component: About, title: 'About', route: '/about' },
       { component: Blog, title: 'Blog', route: '/blog' },
+      { component: WritePost, title: 'Write Post', route: '/publish' },
     ],
   }
 
