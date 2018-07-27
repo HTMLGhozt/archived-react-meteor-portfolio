@@ -7,6 +7,7 @@ import {
 } from 'prop-types';
 
 import { Articles } from '../../api/articles';
+import BlogExcerpt from '../sections/blogExcerpt';
 
 class Blog extends React.Component {
   static propTypes = {
@@ -53,7 +54,7 @@ class Blog extends React.Component {
       return <span>your blog articles are loading!</span>;
     }
     if (hasArticles) {
-      return articles.map(article => <div>{ article.title }</div>);
+      return articles.map(article => <BlogExcerpt key={Math.random()} {...article} />);
     }
     return <span>no articles were found in your query</span>;
   }
