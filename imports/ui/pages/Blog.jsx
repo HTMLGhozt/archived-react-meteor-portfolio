@@ -7,7 +7,7 @@ import {
 } from 'prop-types';
 
 import { Articles } from '../../api/articles';
-import BlogExcerpt from '../sections/blogExcerpt';
+import BlogExcerpt from '../sections/BlogExcerpt';
 
 class Blog extends React.Component {
   static propTypes = {
