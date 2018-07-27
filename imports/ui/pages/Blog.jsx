@@ -1,7 +1,10 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 import { withTracker } from 'meteor/react-meteor-data';
 import isEqual from 'lodash/isEqual';
-import { arrayOf, shape, string } from 'prop-types';
+import {
+  arrayOf, shape, string, bool,
+} from 'prop-types';
 
 import { Articles } from '../../api/articles';
 
@@ -12,11 +15,9 @@ class Blog extends React.Component {
         title: string,
         content: string,
       }),
-    ),
-  }
-
-  static defaultProps = {
-    articles: [],
+    ).isRequired,
+    loading: bool.isRequired,
+    hasArticles: bool.isRequired,
   }
 
   state = {
@@ -24,13 +25,18 @@ class Blog extends React.Component {
   }
 
   componentDidMount() {
-    const { articles } = this.state;
-    if (!articles.length) {
-      this.fetchArticles();
+    const { articles } = this.props;
+
+    if (articles.length > 0) {
+      this.setArticlesToState();
     }
   }
 
-  fetchArticles = () => {
+  componentDidUpdate() {
+    this.setArticlesToState();
+  }
+
+  setArticlesToState = () => {
     const { articles } = this.props;
     const { articles: stateArticles } = this.state;
 
@@ -39,19 +45,27 @@ class Blog extends React.Component {
     }
   }
 
-  render() {
+  getInnerContent = () => {
     const { articles } = this.state;
-    return (
-      <div>
-        { articles.map(article => <div>{article.title}</div>) }
-      </div>
-    );
+    const { loading, hasArticles } = this.props;
+
+    if (loading) {
+      return <span>your blog articles are loading!</span>;
+    }
+    if (hasArticles) {
+      return articles.map(article => <div>{ article.title }</div>);
+    }
+    return <span>no articles were found in your query</span>;
+  }
+
+  render() {
+    return <div>{ this.getInnerContent() }</div>;
   }
 }
 
-export default withTracker(() => {
-  const blogHandle = Meteor.subscribe('articles');
-  const loading = !blogHandle.ready();
+export default withRouter(withTracker(() => {
+  const handle = Meteor.subscribe('articles');
+  const loading = !handle.ready();
   const list = Articles.find();
   const hasArticles = !loading && !!list;
 
@@ -61,4 +75,4 @@ export default withTracker(() => {
     list,
     articles: hasArticles ? list.fetch() : [],
   };
-})(Blog);
+})(Blog));
