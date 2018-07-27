@@ -2,7 +2,7 @@ import React from 'react';
 import { string } from 'prop-types';
 
 const createMarkup = content => ({
-  _html: encodeURI(content.slice(0, 40)),
+  __html: encodeURI(content.slice(0, 40)),
 });
 
 const BlogExcerpt = ({ title, content }) => (
