@@ -48,7 +48,6 @@ export default class Blog extends React.Component {
     console.info('pre sent', title, content);
 
     insert.call({ title, content }, (error, response) => {
-
       if (error) {
         console.error(error, error.error, error.message);
       }
