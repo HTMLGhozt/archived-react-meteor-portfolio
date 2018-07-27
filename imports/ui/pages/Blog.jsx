@@ -65,6 +65,7 @@ class Blog extends React.Component {
 }
 
 export default withRouter(withTracker(() => {
+  // TODO: Make variable names more verbose.
   const handle = Meteor.subscribe('articles');
   const loading = !handle.ready();
   const list = Articles.find();
