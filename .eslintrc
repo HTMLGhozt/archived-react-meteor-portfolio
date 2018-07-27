@@ -9,6 +9,8 @@
     "linebreak-style": 0,
     "import/no-unresolved": 0,
     "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }],
-    "react/prefer-stateless-function": [2, { "ignorePureComponents": true }]
+    "react/prefer-stateless-function": [2, { "ignorePureComponents": true }],
+    "jsx-a11y/label-has-for": 0,
+    "no-underscore-dangle": ["error", { "allow": ["_id"] }]
   }
 }
