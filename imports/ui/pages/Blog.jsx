@@ -45,7 +45,7 @@ class Blog extends React.Component {
     }
   }
 
-  getInnerContent = () => {
+  getInnerBlogContent = () => {
     const { articles } = this.state;
     const { loading, hasArticles } = this.props;
 
@@ -59,7 +59,7 @@ class Blog extends React.Component {
   }
 
   render() {
-    return <div>{ this.getInnerContent() }</div>;
+    return <div>{ this.getInnerBlogContent() }</div>;
   }
 }
 
