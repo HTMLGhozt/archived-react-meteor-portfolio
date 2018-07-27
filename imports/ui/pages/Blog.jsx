@@ -54,7 +54,7 @@ class Blog extends React.Component {
       return <span>your blog articles are loading!</span>;
     }
     if (hasArticles) {
-      return articles.map(article => <BlogExcerpt key={Math.random()} {...article} />);
+      return articles.map(article => <BlogExcerpt key={article._id} {...article} />);
     }
     return <span>no articles were found in your query</span>;
   }
@@ -73,7 +73,6 @@ export default withRouter(withTracker(() => {
   return {
     loading,
     hasArticles,
-    list,
     articles: hasArticles ? list.fetch() : [],
   };
 })(Blog));
