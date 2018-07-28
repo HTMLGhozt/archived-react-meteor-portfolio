@@ -4,7 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const meteorExternals = require('webpack-meteor-externals');
 
 const clientConfig = {
-  entry: './client/main.js',
+  entry: ['babel-polyfill', './client/main.js'],
   module: {
     rules: [
       {

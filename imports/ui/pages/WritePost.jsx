@@ -41,20 +41,21 @@ export default class Blog extends React.Component {
     });
   }
 
-  handleSubmit = (event) => {
+  handleSubmit = async (event) => {
     event.preventDefault();
     const { title, content } = this.state;
 
-    console.info('pre sent', title, content);
+    try {
+      const { success, message } = await insert.call({ title, content });
 
-    insert.call({ title, content }, (error, response) => {
-      if (error) {
-        console.error(error, error.error, error.message);
-      }
-
-      console.info(response);
       this.setState({ title: '', content: '' });
-    });
+
+      if (!success) {
+        throw new Error(`unsuccessful submission! ${message}`);
+      }
+    } catch ({ error, message }) {
+      console.error(error, message);
+    }
   }
 
   render() {
