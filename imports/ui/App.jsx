@@ -4,18 +4,18 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Header from './sections/Header';
 import Footer from './sections/Footer';
 import Home from './pages/Home';
-import Blog from './pages/blog';
-import WritePost from './pages/WritePost';
+// import Blog from './pages/blog';
+// import WritePost from './pages/WritePost';
 
-const About = () => <div>About</div>;
+const Portfolio = () => <div>Under construction!</div>;
 
 class App extends React.Component {
   state = {
     pages: [
       { component: Home, title: 'Home', route: '/' },
-      { component: About, title: 'About', route: '/about' },
-      { component: Blog, title: 'Blog', route: '/blog' },
-      { component: WritePost, title: 'Write Post', route: '/publish' },
+      { component: Portfolio, title: 'Portfolio', route: '/portfolio' },
+      // { component: Blog, title: 'Blog', route: '/blog' },
+      // { component: WritePost, title: 'Write Post', route: '/publish' },
     ],
   }
 
