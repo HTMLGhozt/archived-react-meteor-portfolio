@@ -8,13 +8,8 @@ const clientConfig = {
   module: {
     rules: [
       {
-        test: /\.html$/,
-        loader: 'html-loader',
-      },
-      {
         test: /\.svg$/,
         include: join(__dirname, 'imports/ui/static'),
-        exclude: /node_modules/,
         use: {
           loader: 'file-loader',
           options: {
