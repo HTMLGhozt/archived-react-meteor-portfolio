@@ -1,3 +1,4 @@
+import './main.html';
 import { Meteor } from 'meteor/meteor';
 import ReactDOM from 'react-dom';
 
